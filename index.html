@@ -13,7 +13,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Share Tech Mono', monospace;
-      background: #000; /* base background for hacker style */
+      background: #000;
       color: #00C0FF;
       position: relative;
       padding: 20px;
@@ -32,7 +32,6 @@
       z-index: -5;
       overflow: hidden;
     }
-    /* Create pseudo-elements for vertical lines glitch effect */
     #animationBackground::before,
     #animationBackground::after {
       content: '';
@@ -71,10 +70,10 @@
     .section-container {
       background: rgba(0, 0, 0, 0.85);
       border: 1px solid #00C0FF;
+      box-shadow: 0 0 10px #00C0FF, 0 0 15px #FFD700;
       padding: 20px;
       margin: 20px auto;
       max-width: 600px;
-      box-shadow: 0 0 10px #00C0FF;
       border-radius: 8px;
       position: relative;
       z-index: 1;
@@ -83,7 +82,7 @@
     h1, h2 {
       font-family: 'Orbitron', sans-serif;
       color: #00C0FF;
-      text-shadow: 0 0 5px #00C0FF;
+      text-shadow: 0 0 5px #00C0FF, 0 0 10px #FFD700;
       margin-bottom: 20px;
     }
     h1 { 
@@ -108,7 +107,8 @@
     label { display: block; margin-top: 15px; color: #00C0FF; }
     input, button {
       width: 100%; padding: 10px; margin-top: 8px;
-      border: 1px solid #00C0FF; background: #000; 
+      border: 1px solid #00C0FF;
+      background: #000; 
       color: #00C0FF; font-family: inherit; font-size: 1rem;
       border-radius: 4px;
     }
@@ -117,6 +117,8 @@
       cursor: pointer; margin-top: 20px;
       background: #00C0FF; color: #000;
       transition: background 0.3s;
+      border: 1px solid #FFD700;
+      box-shadow: 0 0 5px #FFD700;
     }
     button:hover { background: #0089cc; }
 
@@ -137,7 +139,7 @@
 
     .success, .warning {
       font-weight: bold;
-      text-shadow: 0 0 5px #00C0FF;
+      text-shadow: 0 0 5px #00C0FF, 0 0 10px #FFD700;
       animation: glow 1s ease-in-out infinite alternate;
       padding: 10px;
       border-radius: 6px;
@@ -163,6 +165,7 @@
       font-weight: bold;
       cursor: pointer;
       transition: background 0.3s;
+      border: 2px solid #FFD700;
     }
     .learn-more-btn:hover { background: #CC0022; }
 
@@ -173,7 +176,7 @@
       padding: 20px;
       max-width: 600px;
       margin: 20px auto;
-      box-shadow: 0 0 10px #00C0FF;
+      box-shadow: 0 0 10px #00C0FF, 0 0 15px #FFD700;
       border-radius: 8px;
       text-align: center;
     }
@@ -190,6 +193,7 @@
       transition: background 0.3s;
       text-decoration: none;
       display: inline-block;
+      border: 1px solid #FFD700;
     }
     #botInfo button:hover {
       background: #0089cc;
@@ -216,7 +220,7 @@
     <div id="projectLoading" class="hidden">
       <p>Analyzing project...</p>
     </div>
-    <div id="projectAnalysisResults" class="hidden fade-in">
+    <div id="projectAnalysisResults" class="fade-in">
       <h2>Analysis Results</h2>
       <div id="fakeMetrics"></div>
       <div id="resolution"></div>
@@ -234,7 +238,7 @@
     <div id="devLoading" class="hidden">
       <p>Analyzing developer...</p>
     </div>
-    <div id="devAnalysisResults" class="hidden fade-in">
+    <div id="devAnalysisResults" class="fade-in">
       <h2>Developer Analysis Results</h2>
       <div id="devResolution"></div>
       <div id="learnMoreContainer" class="hidden">
@@ -336,7 +340,3 @@
   </script>
 </body>
 </html>
-
-
-
-
