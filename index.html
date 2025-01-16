@@ -3,24 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Scam Detector</title> <!-- Changed title to Scam Detector -->
+  <title>Scam Detector</title>
   <style>
     /* Import Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
     /* Reset and Base Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Share Tech Mono', monospace;
-      background: #000F1F; /* Darker background with a bluish tint */
-      color: #00C0FF; /* Blue text color */
+      background: #000F1F;
+      color: #00C0FF;
       position: relative;
-      padding: 20px; /* Smaller padding */
+      padding: 20px;
       overflow-y: scroll;
       min-height: 100vh;
     }
@@ -37,28 +33,19 @@
       overflow: hidden;
       animation: solanaMeta 4s ease-in-out infinite alternate;
     }
-
-    /* Example animation: subtle shifting radial gradient */
     @keyframes solanaMeta {
-      0% {
-        background: radial-gradient(circle at center, #003F5C, #000F1F 70%);
-      }
-      100% {
-        background: radial-gradient(circle at center, #007ACC, #000F1F 70%);
-      }
+      0% { background: radial-gradient(circle at center, #003F5C, #000F1F 70%); }
+      100% { background: radial-gradient(circle at center, #007ACC, #000F1F 70%); }
     }
 
-    /* Container Styling */
     .section-container {
       background: rgba(0, 0, 0, 0.8);
       border: 1px solid #00C0FF;
-      padding: 20px; /* Reduced padding */
-      margin: 20px auto; /* Center and spacing from top/bottom */
-      max-width: 600px;  /* Restrict width so it doesn’t occupy too much screen */
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
       box-shadow: 0 0 10px #00C0FF;
-      position: relative;
-      z-index: 1;
-      border-radius: 8px; /* Slight rounding for a cleaner look */
+      border-radius: 8px;
     }
 
     h1, h2 {
@@ -67,25 +54,10 @@
       text-shadow: 0 0 5px #00C0FF;
       margin-bottom: 20px;
     }
+    h1 { font-size: 3rem; text-align: center; margin-bottom: 10px; animation: titlePulse 2s infinite alternate; }
+    @keyframes titlePulse { 0% { transform: scale(1); } 100% { transform: scale(1.03); } }
+    h2 { font-size: 1.6rem; margin-bottom: 10px; }
 
-    h1 {
-      font-size: 3rem;
-      text-align: center;
-      margin-bottom: 10px;
-      animation: titlePulse 2s infinite alternate;
-    }
-
-    @keyframes titlePulse {
-      0%   { transform: scale(1); }
-      100% { transform: scale(1.03); }
-    }
-
-    h2 {
-      font-size: 1.6rem;
-      margin-bottom: 10px;
-    }
-
-    /* Intro/Explanation Text */
     .explanation {
       font-size: 1rem;
       line-height: 1.4;
@@ -93,69 +65,40 @@
       color: #B0E6FF;
     }
 
-    /* Form Elements */
-    form,
-    #fakeMetrics,
-    #resolution,
-    #devResolution {
+    form, #fakeMetrics, #resolution, #devResolution {
       margin-bottom: 20px;
     }
-
-    label {
-      display: block;
-      margin-top: 15px;
-      color: #00C0FF;
-    }
-
-    input,
-    button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 8px;
-      border: 1px solid #00C0FF;
-      background: #000F1F;
-      color: #00C0FF;
-      font-family: inherit;
-      font-size: 1rem;
+    label { display: block; margin-top: 15px; color: #00C0FF; }
+    input, button {
+      width: 100%; padding: 10px; margin-top: 8px;
+      border: 1px solid #00C0FF; background: #000F1F;
+      color: #00C0FF; font-family: inherit; font-size: 1rem;
       border-radius: 4px;
     }
-
-    input:focus,
-    button:focus {
-      outline: none;
-    }
-
+    input:focus, button:focus { outline: none; }
     button {
-      cursor: pointer;
-      margin-top: 20px;
-      background: #00C0FF;
-      color: #000F1F;
+      cursor: pointer; margin-top: 20px;
+      background: #00C0FF; color: #000F1F;
       transition: background 0.3s;
     }
+    button:hover { background: #0089cc; }
 
-    button:hover {
-      background: #0089cc;
+    #projectLoading, #devLoading {
+      animation: scanning 1s infinite alternate;
+      font-size: 1.1rem; text-align: center;
+      margin-top: 10px; font-weight: bold;
     }
-
-    /* Statistics / Fake Metrics */
-    .statistic {
-      margin: 10px 0;
-    }
-    .statistic div {
-      display: inline-block;
-    }
-    .flicker {
-      animation: flickerText 0.2s infinite;
-    }
-    @keyframes flickerText {
-      0%   { opacity: 1; }
-      50%  { opacity: 0.3; }
-      100% { opacity: 1; }
+    @keyframes scanning {
+      0% { transform: scale(1); filter: brightness(1); }
+      100% { transform: scale(1.05); filter: brightness(2); }
     }
 
-    /* Success & Warning */
-    .success,
-    .warning {
+    .statistic { margin: 10px 0; }
+    .statistic div { display: inline-block; }
+    .flicker { animation: flickerText 0.2s infinite; }
+    @keyframes flickerText { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+    .success, .warning {
       font-weight: bold;
       text-shadow: 0 0 5px #00C0FF;
       animation: glow 1s ease-in-out infinite alternate;
@@ -163,108 +106,200 @@
       border-radius: 6px;
       margin-top: 10px;
     }
-    .success {
-      background-color: #004A66;
-    }
-    .warning {
-      background-color: #FF0033;
-    }
+    .success { background-color: #004A66; }
+    .warning { background-color: #FF0033; }
+    @keyframes glow { from { text-shadow: 0 0 5px; } to { text-shadow: 0 0 20px; } }
 
-    @keyframes glow {
-      from { text-shadow: 0 0 5px; }
-      to   { text-shadow: 0 0 20px; }
-    }
+    .fade-in { opacity: 0; animation: fadeIn 1s forwards; }
+    @keyframes fadeIn { to { opacity: 1; } }
 
-    /* Fade-in effect */
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 2s forwards;
-    }
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
+    .hidden { display: none; }
 
-    /* Hidden class */
-    .hidden {
-      display: none;
+    .learn-more-btn {
+      margin-top: 15px;
+      padding: 10px;
+      background: #FF0033;
+      border: none;
+      border-radius: 4px;
+      color: #FFF;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .learn-more-btn:hover { background: #CC0022; }
+
+    /* Bot Info Section styling */
+    #botInfo {
+      background: rgba(0, 0, 0, 0.9);
+      border: 1px solid #00C0FF;
+      padding: 20px;
+      max-width: 600px;
+      margin: 20px auto;
+      box-shadow: 0 0 10px #00C0FF;
+      border-radius: 8px;
+      text-align: center;
+    }
+    #botInfo a, #botInfo button {
+      margin-top: 20px;
+      padding: 10px;
+      background: #00C0FF;
+      border: none;
+      border-radius: 4px;
+      color: #000F1F;
+      font-family: inherit;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    #botInfo a:hover, #botInfo button:hover {
+      background: #0089cc;
     }
   </style>
 </head>
 <body>
   <div id="animationBackground"></div>
   <h1>Scam Detector</h1>
-
-  <!-- Short Explanation -->
   <div class="explanation">
-    Nuestro software de análisis detecta estafas en el ecosistema Solana revisando exhaustivamente el proyecto a nivel técnico, 
-    evaluando su funcionamiento y rastreando todo el historial del desarrollador. Realizamos un análisis profundo para identificar 
-    cualquier señal sospechosa y así proteger a la comunidad.
+    Our software helps you discover if your favorite Solana projects or developers might be scams. 
+    We perform thorough technical reviews, evaluate the project’s background, and check developer history 
+    to ensure transparency and protect the community.
   </div>
 
-  <!-- Coin Analysis Section -->
-  <div class="section-container" id="coinAnalysisSection">
-    <h2>Coin Analysis</h2>
-    <form id="coinAnalyzeForm">
-      <label for="contractAddress">Contract Address:</label>
-      <input
-        type="text"
-        id="contractAddress"
-        name="contractAddress"
-        placeholder="e.g., 4Nd1m1aU..."
-        required
-        maxlength="100"
-      />
-      <label for="twitterHandle">Twitter Handle (optional):</label>
-      <input
-        type="text"
-        id="twitterHandle"
-        name="twitterHandle"
-        placeholder="@example_handle"
-        maxlength="100"
-      />
-      <button type="submit">Analyze Coin</button>
+  <!-- Project Analysis Section -->
+  <div class="section-container" id="projectAnalysisSection">
+    <h2>Project Analysis</h2>
+    <form id="projectAnalyzeForm">
+      <label for="contractAddress">Project Address (Contract):</label>
+      <input type="text" id="contractAddress" name="contractAddress" placeholder="e.g., 4Nd1m1aU..." required maxlength="100" />
+      <button type="submit">Analyze Project</button>
     </form>
-    <div id="coinLoading" class="hidden">
-      <p>🔍 Analyzing coin...</p>
+    <div id="projectLoading" class="hidden">
+      <p>Analyzing project...</p>
     </div>
-    <div id="coinAnalysisResults" class="hidden">
+    <div id="projectAnalysisResults" class="hidden fade-in">
       <h2>Analysis Results</h2>
-      <div id="fakeMetrics">
-        <!-- Dynamic fake metrics -->
-      </div>
+      <div id="fakeMetrics"></div>
       <div id="resolution"></div>
     </div>
   </div>
 
   <!-- Developer Analysis Section -->
   <div class="section-container" id="devAnalysisSection">
-    <h2>Developer & Social Media Analysis</h2>
+    <h2>Developer Analysis</h2>
     <form id="devAnalyzeForm">
-      <label for="socialLink">Developer/Social Media Link:</label>
-      <input
-        type="text"
-        id="socialLink"
-        name="socialLink"
-        placeholder="e.g., https://twitter.com/example"
-        required
-        maxlength="200"
-      />
+      <label for="developerLink">Developer Link:</label>
+      <input type="text" id="developerLink" name="developerLink" placeholder="e.g., https://somepage.com/dev-profile" required maxlength="200" />
       <button type="submit">Analyze Developer</button>
     </form>
     <div id="devLoading" class="hidden">
-      <p>🔍 Analyzing developer...</p>
+      <p>Analyzing developer...</p>
     </div>
-    <div id="devAnalysisResults" class="hidden">
+    <div id="devAnalysisResults" class="hidden fade-in">
       <h2>Developer Analysis Results</h2>
       <div id="devResolution"></div>
+      <div id="learnMoreContainer" class="hidden">
+        <button class="learn-more-btn" id="learnMoreBtn">
+          Learn More About Our Scam Detector Bot
+        </button>
+      </div>
     </div>
   </div>
 
+  <!-- Bot Info Section (Hidden by default) -->
+  <div id="botInfo" class="hidden">
+    <h2>Scam Detector Bot</h2>
+    <p>We are working on improving our scam detector bot. Stay tuned for more information!</p>
+    <button id="goBackBtn">Go Back</button>
+  </div>
+
   <script>
-    // Handle Coin and Developer Analysis (same logic as original)
-    // Add your JS code or placeholders here if needed
+    // Project Analysis Logic
+    const projectForm = document.getElementById('projectAnalyzeForm');
+    const projectLoading = document.getElementById('projectLoading');
+    const projectResults = document.getElementById('projectAnalysisResults');
+    const fakeMetrics = document.getElementById('fakeMetrics');
+    const resolution = document.getElementById('resolution');
+
+    projectForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      projectLoading.classList.remove('hidden');
+      projectResults.classList.add('hidden');
+
+      setTimeout(() => {
+        projectLoading.classList.add('hidden');
+        projectResults.classList.remove('hidden');
+        fakeMetrics.innerHTML = `
+          <div class="statistic">
+            <strong>Activity Score:</strong> <span class="flicker">82/100</span>
+          </div>
+          <div class="statistic">
+            <strong>Token Holders:</strong> 12,345
+          </div>
+        `;
+        resolution.innerHTML = `
+          <div class="success">
+            No critical scam indicators found. Further research recommended.
+          </div>
+        `;
+      }, 2000);
+    });
+
+    // Developer Analysis Logic
+    const devForm = document.getElementById('devAnalyzeForm');
+    const devLoading = document.getElementById('devLoading');
+    const devResults = document.getElementById('devAnalysisResults');
+    const devResolution = document.getElementById('devResolution');
+    const learnMoreContainer = document.getElementById('learnMoreContainer');
+    const learnMoreBtn = document.getElementById('learnMoreBtn');
+
+    devForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      devLoading.classList.remove('hidden');
+      devResults.classList.add('hidden');
+      learnMoreContainer.classList.add('hidden'); 
+
+      setTimeout(() => {
+        devLoading.classList.add('hidden');
+        devResults.classList.remove('hidden');
+
+        const scamDetected = true;
+        devResolution.innerHTML = `
+          <div class="statistic">
+            <strong>Past Projects Analyzed:</strong> 5
+          </div>
+          <div class="statistic">
+            <strong>Red Flags Detected:</strong> 1
+          </div>
+          ${scamDetected ? `<div class="warning">Potential scam activity in previous project. Further due diligence required.</div>` : ''}
+        `;
+        
+        if (scamDetected) {
+          learnMoreContainer.classList.remove('hidden');
+        }
+      }, 2000);
+    });
+
+    // Learn More Button Logic
+    const botInfoSection = document.getElementById('botInfo');
+    const goBackBtn = document.getElementById('goBackBtn');
+    const allSections = document.querySelectorAll('.section-container');
+
+    learnMoreBtn.addEventListener('click', () => {
+      // Hide analysis sections and show bot info
+      allSections.forEach(section => section.classList.add('hidden'));
+      botInfoSection.classList.remove('hidden');
+    });
+
+    goBackBtn.addEventListener('click', () => {
+      // Hide bot info and show analysis sections
+      botInfoSection.classList.add('hidden');
+      allSections.forEach(section => section.classList.remove('hidden'));
+    });
   </script>
 </body>
 </html>
+
 
 
