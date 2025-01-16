@@ -13,7 +13,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Share Tech Mono', monospace;
-      background: #000F1F;
+      background: #000; /* base background for hacker style */
       color: #00C0FF;
       position: relative;
       padding: 20px;
@@ -21,31 +21,63 @@
       min-height: 100vh;
     }
 
-    /* Animation Background */
+    /* Hacker-style animated background */
     #animationBackground {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -3;
-      background: radial-gradient(circle at center, #003F5C, #000F1F 70%);
+      background: black;
+      z-index: -5;
       overflow: hidden;
-      animation: solanaMeta 4s ease-in-out infinite alternate;
     }
-    @keyframes solanaMeta {
-      0% { background: radial-gradient(circle at center, #003F5C, #000F1F 70%); }
-      100% { background: radial-gradient(circle at center, #007ACC, #000F1F 70%); }
+    /* Create pseudo-elements for vertical lines glitch effect */
+    #animationBackground::before,
+    #animationBackground::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 192, 255, 0.1) 3px,
+        rgba(0, 192, 255, 0.1) 4px
+      );
+      animation: glitch 3s infinite;
+    }
+    #animationBackground::after {
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 192, 255, 0.1) 3px,
+        rgba(0, 192, 255, 0.1) 4px
+      );
+      animation-direction: reverse;
+    }
+    @keyframes glitch {
+      0% { transform: translate(0,0); opacity: 1; }
+      20% { transform: translate(-10px,10px); opacity: 0.8; }
+      40% { transform: translate(10px,-10px); opacity: 0.6; }
+      60% { transform: translate(-5px,5px); opacity: 0.4; }
+      80% { transform: translate(5px,-5px); opacity: 0.7; }
+      100% { transform: translate(0,0); opacity: 1; }
     }
 
     .section-container {
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.85);
       border: 1px solid #00C0FF;
       padding: 20px;
       margin: 20px auto;
       max-width: 600px;
       box-shadow: 0 0 10px #00C0FF;
       border-radius: 8px;
+      position: relative;
+      z-index: 1;
     }
 
     h1, h2 {
@@ -54,7 +86,12 @@
       text-shadow: 0 0 5px #00C0FF;
       margin-bottom: 20px;
     }
-    h1 { font-size: 3rem; text-align: center; margin-bottom: 10px; animation: titlePulse 2s infinite alternate; }
+    h1 { 
+      font-size: 3rem; 
+      text-align: center; 
+      margin-bottom: 10px; 
+      animation: titlePulse 2s infinite alternate;
+    }
     @keyframes titlePulse { 0% { transform: scale(1); } 100% { transform: scale(1.03); } }
     h2 { font-size: 1.6rem; margin-bottom: 10px; }
 
@@ -71,14 +108,14 @@
     label { display: block; margin-top: 15px; color: #00C0FF; }
     input, button {
       width: 100%; padding: 10px; margin-top: 8px;
-      border: 1px solid #00C0FF; background: #000F1F;
+      border: 1px solid #00C0FF; background: #000; 
       color: #00C0FF; font-family: inherit; font-size: 1rem;
       border-radius: 4px;
     }
     input:focus, button:focus { outline: none; }
     button {
       cursor: pointer; margin-top: 20px;
-      background: #00C0FF; color: #000F1F;
+      background: #00C0FF; color: #000;
       transition: background 0.3s;
     }
     button:hover { background: #0089cc; }
@@ -117,7 +154,8 @@
 
     .learn-more-btn {
       margin-top: 15px;
-      padding: 10px;
+      padding: 15px 25px;
+      font-size: 1.2rem;
       background: #FF0033;
       border: none;
       border-radius: 4px;
@@ -139,13 +177,13 @@
       border-radius: 8px;
       text-align: center;
     }
-    #botInfo a, #botInfo button {
+    #botInfo button {
       margin-top: 20px;
       padding: 10px;
       background: #00C0FF;
       border: none;
       border-radius: 4px;
-      color: #000F1F;
+      color: #000;
       font-family: inherit;
       font-size: 1rem;
       cursor: pointer;
@@ -153,7 +191,7 @@
       text-decoration: none;
       display: inline-block;
     }
-    #botInfo a:hover, #botInfo button:hover {
+    #botInfo button:hover {
       background: #0089cc;
     }
   </style>
@@ -287,19 +325,18 @@
     const allSections = document.querySelectorAll('.section-container');
 
     learnMoreBtn.addEventListener('click', () => {
-      // Hide analysis sections and show bot info
       allSections.forEach(section => section.classList.add('hidden'));
       botInfoSection.classList.remove('hidden');
     });
 
     goBackBtn.addEventListener('click', () => {
-      // Hide bot info and show analysis sections
       botInfoSection.classList.add('hidden');
       allSections.forEach(section => section.classList.remove('hidden'));
     });
   </script>
 </body>
 </html>
+
 
 
 
